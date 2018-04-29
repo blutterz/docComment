@@ -1,0 +1,95 @@
+{
+    "name": "sample-doc",
+    "displayName": "Sample Doc",
+    "description": "sample Document Comments ",
+    "version": "0.0.1",
+    "publisher": "blutter",
+    "engines": {
+        "vscode": "^1.22.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.docComment"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.docComment",
+                "title": "docComment"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.docComment",
+                "key": "ctrl+shift+/",
+                "when": "editorTextFocus"
+            }
+        ],
+        "configuration": [
+            {
+                "title": "document comment Configuration",
+                "type": "object",
+                "properties": {
+                    "docComment.includeTypes": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "When enabled, type information is added to comment tags."
+                    },
+                    "docComment.includeMemberOfOnClassMembers": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "When enabled, memberOf information is added to comment tags on class members."
+                    },
+                    "docComment.includeMemberOfOnInterfaceMembers": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "When enabled, memberOf information is added to comment tags on interface members."
+                    },
+                    "docComment.includeDescriptionTag": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "When enabled, JSDoc comments for functions and methods will include @description."
+                    },
+                    "docComment.enableHungarianNotationEvaluation": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "When enabled, hungarian notation will be used as a type hint."
+                    },
+                    "docComment.inferTypesFromNames": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "When enabled, will use names of params & methods as type hints."
+                    },
+                    "docComment.includeAuthorTag": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "When enabled, will add the @author tag."
+                    },
+                    "docComment.authorName": {
+                        "type": "string",
+                        "default": "(Set the text for this tag by adding docthis.authorName to your settings file.)",
+                        "description": "When docthis.includeAuthorTag is enabled, will add @author tag with this value."
+                    }
+                }
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "tslint": "^5.8.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {}
+}
